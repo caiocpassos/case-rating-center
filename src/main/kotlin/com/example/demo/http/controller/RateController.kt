@@ -1,6 +1,5 @@
 package com.example.demo.http.controller
 
-import com.example.demo.domain.entity.Rate
 import com.example.demo.domain.usecase.rating.AddRateUseCase
 import com.example.demo.domain.usecase.rating.GetAllRatesUseCase
 import com.example.demo.domain.usecase.rating.GetMerchantAverageUseCase
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("/rates")
@@ -23,7 +23,7 @@ class RateController(
 ) {
 
     @PostMapping
-    fun addRate(@RequestBody rating: RateDto) =
+    fun addRate(@Valid @RequestBody rating: RateDto) =
         addRateUseCase.add(rateDtoToRatingConverter.convert(rating))
 
     @GetMapping
