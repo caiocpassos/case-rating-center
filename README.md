@@ -56,6 +56,17 @@
 }
 ```
 
+# 13/05 - Case 2 Backend
+
+## Objetivos
+
+ - Criar uma camada de cache onde a primeira request deve chegar ao banco de dados, porém a partir da próxima request com os mesmos dados, a consulta deve acontecer no cache, e não mais no banco
+
+
+### Notas
+
+ - O cache deve ter uma vida útil de 1 minuto para cada informação
+
 ## Stack
 
  - Kotlin

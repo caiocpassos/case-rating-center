@@ -27,7 +27,7 @@ class RateController(
         addRateUseCase.add(rateDtoToRatingConverter.convert(rating))
 
     @GetMapping
-    fun getAllRates() = getAllRatesUseCase.getAll()
+    fun getAllRates() = getAllRatesUseCase.getAll() //TODO(Resolve isso olhando o README, trouxa)
 
     @GetMapping("/media/{merchantId}")
     fun getMerchantAverage(@PathVariable merchantId: String) = getMerchantAverageUseCase.getAverage(merchantId)

@@ -1,5 +1,6 @@
 package com.example.demo.database
 
+import com.example.demo.domain.exceptions.NotFoundException
 import com.example.demo.domain.adapter.RateRepository
 import com.example.demo.domain.entity.Rate
 import com.example.demo.http.dto.RateMerchantDto
@@ -23,7 +24,11 @@ object RateDatabaseSimulator : RateRepository{
         val filteredRateDatabase = rateDatabase
             .filter { it.merchantId == merchantId && it.rateValue != null }
 
-            filteredRateDatabase.forEach { soma += it.rateValue!! }
+        if (filteredRateDatabase.isEmpty()) {
+            throw NotFoundException("ERROR! MerchantId not found")
+        }
+
+        filteredRateDatabase.forEach { soma += it.rateValue!! }
 
         return RateMerchantDto(
             merchantId = merchantId,

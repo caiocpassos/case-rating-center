@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component
 class RateDtoToRatingConverter : Converter<RateDto, Rate> {
 
     override fun convert(source: RateDto) = Rate(
-        orderId = source.orderId,
-        clientId = source.clientId,
-        merchantId = source.merchantId,
+        orderId = source.orderId!!,
+        clientId = source.clientId!!,
+        merchantId = source.merchantId!!,
         rateValue = source.rateValue
     )
 
