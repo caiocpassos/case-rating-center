@@ -3,6 +3,7 @@ package com.example.demo.http.controller
 import com.example.demo.domain.usecase.rating.AddRateUseCase
 import com.example.demo.domain.usecase.rating.GetAllRatesUseCase
 import com.example.demo.domain.usecase.rating.GetMerchantAverageUseCase
+import com.example.demo.domain.usecase.rating.GetRatesByMerchantIdUseCase
 import com.example.demo.http.converter.RateDtoToRatingConverter
 import com.example.demo.http.dto.RateDto
 import org.springframework.web.bind.annotation.GetMapping
@@ -19,6 +20,7 @@ class RateController(
     private val addRateUseCase: AddRateUseCase,
     private val getAllRatesUseCase: GetAllRatesUseCase,
     private val getMerchantAverageUseCase: GetMerchantAverageUseCase,
+    private val getRatesByMerchantIdUseCase: GetRatesByMerchantIdUseCase,
     private val rateDtoToRatingConverter: RateDtoToRatingConverter
 ) {
 
@@ -27,7 +29,10 @@ class RateController(
         addRateUseCase.add(rateDtoToRatingConverter.convert(rating))
 
     @GetMapping
-    fun getAllRates() = getAllRatesUseCase.getAll() //TODO(Resolve isso olhando o README, trouxa)
+    fun getAllRates() = getAllRatesUseCase.getAll()
+
+    @GetMapping("/{merchantId}")
+    fun getRatesByMerchantIdUseCase(@PathVariable merchantId: String) = getRatesByMerchantIdUseCase.getBy(merchantId)
 
     @GetMapping("/media/{merchantId}")
     fun getMerchantAverage(@PathVariable merchantId: String) = getMerchantAverageUseCase.getAverage(merchantId)

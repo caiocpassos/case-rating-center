@@ -21,5 +21,5 @@ data class RateDto(
 
     @field:DecimalMax("5.0", message = "Max value of rate is 5")
     @field:DecimalMin("1.0", message = "Min value of rate is 1")
-    val rateValue: Double? = null
+    val rateValue: Int
 )

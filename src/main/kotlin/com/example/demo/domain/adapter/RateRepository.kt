@@ -9,6 +9,8 @@ interface RateRepository {
 
     fun getAllRates(): MutableList<Rate>
 
+    fun getRatesByMerchantId(merchantId: String): MutableList<Rate>
+
     fun getMerchantAverage(merchantId: String): RateMerchantDto
 
 }

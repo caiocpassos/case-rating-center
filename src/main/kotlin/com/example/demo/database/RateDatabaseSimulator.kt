@@ -19,21 +19,26 @@ object RateDatabaseSimulator : RateRepository{
         return rateDatabase
     }
 
+    override fun getRatesByMerchantId(merchantId: String): MutableList<Rate> {
+        return rateDatabase
+            .filter { it.merchantId == merchantId }
+                as MutableList<Rate>
+    }
+
     override fun getMerchantAverage(merchantId: String): RateMerchantDto {
         var soma = 0.0
         val filteredRateDatabase = rateDatabase
-            .filter { it.merchantId == merchantId && it.rateValue != null }
+            .filter { it.merchantId == merchantId }
 
         if (filteredRateDatabase.isEmpty()) {
             throw NotFoundException("ERROR! MerchantId not found")
         }
 
-        filteredRateDatabase.forEach { soma += it.rateValue!! }
+        filteredRateDatabase.forEach { soma += it.rateValue }
 
         return RateMerchantDto(
             merchantId = merchantId,
             rateValue = soma / filteredRateDatabase.size
         )
     }
-
 }
