@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+
+  localstack:
+    container_name: localstack-case
+    image: localstack/localstack
+    volumes:
+      - ./:/var
+      - ./local/aws:/docker-entrypoint-initaws.d
+    environment:
+      SERVICES: dynamodb
+    ports:
+      - '4566:4566'

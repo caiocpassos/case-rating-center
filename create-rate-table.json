@@ -1,0 +1,15 @@
+{
+  "TableName": "Rate",
+  "KeySchema": [
+    { "AttributeName": "MerchantId", "KeyType": "HASH" },
+    { "AttributeName": "createdAt", "KeyType": "RANGE" }
+  ],
+  "AttributeDefinitions": [
+    { "AttributeName": "MerchantId", "AttributeType": "S" },
+    { "AttributeName": "createdAt", "AttributeType": "N" }
+  ],
+  "ProvisionedThroughput": {
+    "ReadCapacityUnits": 5,
+    "WriteCapacityUnits": 5
+  }
+}

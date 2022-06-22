@@ -11,5 +11,4 @@ data class ErrorView(
     val message: String? = null,
     val path: String,
     val messageList: Map<String, String?>? = null
-
 )
