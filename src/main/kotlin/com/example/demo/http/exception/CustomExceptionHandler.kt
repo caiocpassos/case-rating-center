@@ -36,7 +36,7 @@ class CustomExceptionHandler {
 
         val errorMessage = HashMap<String, String?>()
         exception.bindingResult.fieldErrors.forEach {
-            errorMessage.put(it.field, it.defaultMessage)
+            errorMessage[it.field] = it.defaultMessage
         }
 
         ErrorView(

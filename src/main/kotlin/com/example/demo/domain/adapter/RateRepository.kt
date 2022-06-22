@@ -1,7 +1,8 @@
 package com.example.demo.domain.adapter
 
 import com.example.demo.domain.entity.Rate
-import com.example.demo.http.dto.RateMerchantDto
+import com.example.demo.domain.entity.RateAverage
+import com.example.demo.http.dto.RateAverageDto
 
 interface RateRepository {
 
@@ -9,8 +10,8 @@ interface RateRepository {
 
     fun getAllRates(): MutableList<Rate>
 
-    fun getRatesByMerchantId(merchantId: String): MutableList<Rate>
+    suspend fun getRatesByMerchantId(merchantId: String): MutableList<Rate>
 
-    fun getMerchantAverage(merchantId: String): RateMerchantDto
+    suspend fun getMerchantAverage(merchantId: String): RateAverage
 
 }

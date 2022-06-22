@@ -1,10 +1,10 @@
 package com.example.demo.http.controller
 
-import com.example.demo.domain.usecase.rating.AddRateUseCase
-import com.example.demo.domain.usecase.rating.GetAllRatesUseCase
-import com.example.demo.domain.usecase.rating.GetMerchantAverageUseCase
-import com.example.demo.domain.usecase.rating.GetRatesByMerchantIdUseCase
-import com.example.demo.http.converter.RateDtoToRatingConverter
+import com.example.demo.domain.usecase.AddRateUseCase
+import com.example.demo.domain.usecase.GetAllRatesUseCase
+import com.example.demo.domain.usecase.GetMerchantAverageUseCase
+import com.example.demo.domain.usecase.GetRatesByMerchantIdUseCase
+import com.example.demo.http.converter.RateDtoToRateConverter
 import com.example.demo.http.dto.RateDto
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -21,12 +21,12 @@ class RateController(
     private val getAllRatesUseCase: GetAllRatesUseCase,
     private val getMerchantAverageUseCase: GetMerchantAverageUseCase,
     private val getRatesByMerchantIdUseCase: GetRatesByMerchantIdUseCase,
-    private val rateDtoToRatingConverter: RateDtoToRatingConverter
+    private val rateDtoToRateConverter: RateDtoToRateConverter
 ) {
 
     @PostMapping
     fun addRate(@Valid @RequestBody rating: RateDto) =
-        addRateUseCase.add(rateDtoToRatingConverter.convert(rating))
+        addRateUseCase.add(rateDtoToRateConverter.convert(rating))
 
     @GetMapping
     fun getAllRates() = getAllRatesUseCase.getAll()
@@ -35,5 +35,7 @@ class RateController(
     fun getRatesByMerchantIdUseCase(@PathVariable merchantId: String) = getRatesByMerchantIdUseCase.getBy(merchantId)
 
     @GetMapping("/media/{merchantId}")
-    fun getMerchantAverage(@PathVariable merchantId: String) = getMerchantAverageUseCase.getAverage(merchantId)
+    fun getMerchantAverage(@PathVariable merchantId: String) {
+        getMerchantAverageUseCase.getAverage(merchantId)
+    }
 }

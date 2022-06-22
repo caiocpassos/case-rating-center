@@ -1,4 +1,4 @@
-package com.example.demo.domain.usecase.rating
+package com.example.demo.domain.usecase
 
 import com.example.demo.domain.adapter.RateRepository
 import kotlinx.coroutines.runBlocking

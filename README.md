@@ -67,6 +67,19 @@
 
  - O cache deve ter uma vida útil de 1 minuto para cada informação
 
+# 27/05 - Case 3 Backend
+
+## Objetivos
+
+ - Realizar um estudo para entender qual o melhor banco de dados para usar nessa aplicação.
+
+ - Deve-se levar em consideração princípios 
+ 
+### Notas
+ - Muita escrita no banco e muita leitura (ao mesmo tempo)
+ - Não precisa ser Real Time
+ - Necessário retornar a nota (armazenando ou calculando em todo o retorno)
+
 ## Stack
 
  - Kotlin
@@ -78,3 +91,6 @@
 ```
 https://github.com/caiocpassos/cases-backend
 ```
+
+fazer um docker compose com local stack
+local stack com serviço do dynamo

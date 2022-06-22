@@ -1,7 +1,7 @@
 package com.example.demo.http.dto
 
-import javax.validation.constraints.DecimalMax
-import javax.validation.constraints.DecimalMin
+import javax.validation.constraints.Max
+import javax.validation.constraints.Min
 import javax.validation.constraints.NotEmpty
 import javax.validation.constraints.NotNull
 
@@ -19,7 +19,7 @@ data class RateDto(
     @field:NotNull(message = "Merchant ID can't be null")
     val merchantId: String?,
 
-    @field:DecimalMax("5.0", message = "Max value of rate is 5")
-    @field:DecimalMin("1.0", message = "Min value of rate is 1")
+    @field:Max(5, message = "Max value of rate is 5")
+    @field:Min(1, message = "Min value of rate is 1")
     val rateValue: Int
 )

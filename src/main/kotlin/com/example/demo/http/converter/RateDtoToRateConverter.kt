@@ -6,8 +6,7 @@ import org.springframework.core.convert.converter.Converter
 import org.springframework.stereotype.Component
 
 @Component
-class RateDtoToRatingConverter : Converter<RateDto, Rate> {
-
+class RateDtoToRateConverter : Converter<RateDto, Rate> {
     override fun convert(source: RateDto) = Rate(
         orderId = source.orderId!!,
         clientId = source.clientId!!,
