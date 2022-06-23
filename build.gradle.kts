@@ -22,6 +22,8 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
+	implementation("software.amazon.awssdk:aws-sdk-java:2.17.216")
+	implementation("software.amazon.awssdk:dynamodb:2.17.216")
 	testImplementation("io.mockk:mockk:1.12.4")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2")
