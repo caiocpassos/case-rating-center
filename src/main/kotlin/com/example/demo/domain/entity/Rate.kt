@@ -7,5 +7,5 @@ data class Rate(
     val clientId: String,
     val merchantId: String,
     val rateValue: Int,
-    val createdAt: Long = Instant.now().epochSecond
+    val createdAt: Instant = Instant.now()
 )
