@@ -94,3 +94,5 @@ https://github.com/caiocpassos/cases-backend
 
 fazer um docker compose com local stack
 local stack com serviço do dynamo
+
+Encontrar uma maneira de chamar a url do localstack através do arquivo application.properties

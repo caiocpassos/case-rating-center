@@ -2,7 +2,6 @@ package com.example.demo.domain.usecase
 
 import com.example.demo.domain.adapter.RateRepository
 import com.example.demo.domain.entity.Rate
-import com.example.demo.domain.usecase.GetRatesByMerchantIdUseCase
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.InjectMockKs
@@ -30,7 +29,7 @@ internal class GetRatesByMerchantIdUseCaseTestc {
             orderId = UUID.randomUUID().toString(),
             merchantId = merchantId,
             clientId = UUID.randomUUID().toString(),
-            rateValue = 3
+            value = 3
         )
 
         coEvery {

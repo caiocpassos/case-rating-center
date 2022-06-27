@@ -2,7 +2,6 @@ package com.example.demo.domain.adapter
 
 import com.example.demo.domain.entity.Rate
 import com.example.demo.domain.entity.RateAverage
-import com.example.demo.http.dto.RateAverageDto
 
 interface RateRepository {
 

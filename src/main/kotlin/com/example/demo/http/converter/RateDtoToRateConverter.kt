@@ -11,7 +11,7 @@ class RateDtoToRateConverter : Converter<RateDto, Rate> {
         orderId = source.orderId!!,
         clientId = source.clientId!!,
         merchantId = source.merchantId!!,
-        rateValue = source.rateValue
+        value = source.rateValue
     )
 
 }

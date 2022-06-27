@@ -2,7 +2,6 @@ package com.example.demo.domain.usecase
 
 import com.example.demo.domain.adapter.RateRepository
 import com.example.demo.domain.entity.Rate
-import com.example.demo.domain.usecase.AddRateUseCase
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension
@@ -28,7 +27,7 @@ internal class AddRateUseCaseTest {
             orderId = UUID.randomUUID().toString(),
             merchantId = UUID.randomUUID().toString(),
             clientId = UUID.randomUUID().toString(),
-            rateValue = 4
+            value = 4
         )
 
         justRun { rateRepositoryMockk.addRate(rate) }

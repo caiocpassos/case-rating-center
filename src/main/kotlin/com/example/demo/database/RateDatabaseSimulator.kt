@@ -5,22 +5,15 @@ import com.example.demo.domain.exceptions.NotFoundException
 import com.example.demo.domain.adapter.RateRepository
 import com.example.demo.domain.entity.Rate
 import com.example.demo.domain.entity.RateAverage
-import com.example.demo.http.dto.RateAverageDto
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.springframework.stereotype.Repository
 
-@Repository
 object RateDatabaseSimulator : RateRepository{
     private val rateDatabase: MutableList<Rate> = mutableListOf()
-
-
 
     override fun addRate(rate: Rate) {
         rateDatabase.add(rate)
@@ -58,7 +51,7 @@ object RateDatabaseSimulator : RateRepository{
         val cacheQuery = RateCacheSimulator.rateCache[merchantId]
 
         cacheQuery?.let {
-            val filteredRateCache = cacheQuery.map { it.rateValue }
+            val filteredRateCache = cacheQuery.map { it.value }
             val soma = filteredRateCache.reduce { acc, current -> acc + current }
 
             return@withContext RateAverage(
@@ -80,7 +73,7 @@ object RateDatabaseSimulator : RateRepository{
             RateCacheSimulator.removeFromCache(merchantId)
         }
 
-        val soma = databaseQuery.map { it.rateValue }.reduce { acc, current -> acc + current }
+        val soma = databaseQuery.map { it.value }.reduce { acc, current -> acc + current }
 
         RateAverage(
             merchantId = merchantId,

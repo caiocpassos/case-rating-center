@@ -6,6 +6,6 @@ data class Rate(
     val orderId: String,
     val clientId: String,
     val merchantId: String,
-    val rateValue: Int,
+    val value: Int,
     val createdAt: Instant = Instant.now()
 )
