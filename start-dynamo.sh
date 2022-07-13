@@ -1,1 +1,2 @@
 aws dynamodb create-table --cli-input-json file://create-rate-table.json --endpoint-url http://localhost:4566
+aws dynamodb create-table --cli-input-json file://create-average-table.json --endpoint-url http://localhost:4566

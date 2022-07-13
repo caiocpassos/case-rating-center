@@ -1,0 +1,15 @@
+{
+  "TableName": "Average",
+  "KeySchema": [
+    { "AttributeName": "merchantId", "KeyType": "HASH" },
+    { "AttributeName": "lastUpdate", "KeyType": "RANGE" }
+  ],
+  "AttributeDefinitions": [
+    { "AttributeName": "merchantId", "AttributeType": "S" },
+    { "AttributeName": "lastUpdate", "AttributeType": "N" }
+  ],
+  "ProvisionedThroughput": {
+    "ReadCapacityUnits": 5,
+    "WriteCapacityUnits": 5
+  }
+}

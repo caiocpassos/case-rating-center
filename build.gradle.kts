@@ -27,6 +27,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2")
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive:1.6.2")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.6.2")
 	compileOnly("software.amazon.awssdk:aws-sdk-java:2.17.216")
 	implementation("software.amazon.awssdk:dynamodb:2.17.216")

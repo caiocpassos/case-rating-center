@@ -6,25 +6,22 @@ import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbParti
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSortKey
 
 @DynamoDbBean
-data class RateEntity(
+data class AverageEntity(
     @get:DynamoDbPartitionKey
     @get:DynamoDbAttribute("merchantId")
     var merchantId: String,
 
     @get:DynamoDbSortKey
-    @get:DynamoDbAttribute("createdAt")
-    var createdAt: Long,
+    @get:DynamoDbAttribute("lastUpdate")
+    var lastUpdate: Long,
 
-    @get:DynamoDbAttribute("orderId")
-    var orderId: String,
+    @get:DynamoDbAttribute("rateQuantity")
+    var rateQuantity: Long,
 
-    @get:DynamoDbAttribute("clientId")
-    var clientId: String,
-
-    @get:DynamoDbAttribute("value")
-    var value: Int
+    @get:DynamoDbAttribute("average")
+    var average: Double
 ) {
     companion object {
-        fun getTableName() = "Rate"
+        fun getTableName() = "Average"
     }
 }

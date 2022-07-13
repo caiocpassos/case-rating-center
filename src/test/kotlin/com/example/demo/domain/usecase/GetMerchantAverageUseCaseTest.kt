@@ -1,42 +1,48 @@
 package com.example.demo.domain.usecase
 
 import com.example.demo.domain.adapter.RateRepository
-import com.example.demo.domain.entity.RateAverage
-import com.example.demo.domain.usecase.GetMerchantAverageUseCase
+import com.example.demo.domain.entity.Average
+import com.example.demo.domain.entity.Rate
 import io.mockk.coEvery
 import io.mockk.coVerify
+import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.extension.ExtendWith
 import java.util.UUID
 
+@Suppress("DEPRECATION")
 @ExtendWith(MockKExtension::class)
 internal class GetMerchantAverageUseCaseTest {
 
     @MockK
-    private lateinit var rateRepositoryMockK: RateRepository
+    private lateinit var rateRepository: RateRepository
 
     @InjectMockKs
     private lateinit var sut: GetMerchantAverageUseCase
 
     @Test
-    fun `Should call rateRepository getMerchantAverage method with the correct parameters`() {
-        val merchantId = UUID.randomUUID().toString()
-        val rateValue = 2.3
+    @ExperimentalCoroutinesApi
+    fun `Should call rateRepository getMerchantAverage method with the correct parameters`(): Unit = runBlockingTest {
+        val merchantId = "1f772f9245da09f0e28abb87bb29f309649322f8"
 
-        coEvery {
-            rateRepositoryMockK.getMerchantAverage(merchantId)
-        } returns RateAverage(
+        val average = Average(
             merchantId = merchantId,
-            rateValue = rateValue
+            rateQuantity = 1,
+            average = 3.9
         )
 
-        sut.getAverage(merchantId)
+        coEvery {
+            rateRepository.getMerchantAverage(average.merchantId)
+        } returns average
 
-        coVerify {
-            rateRepositoryMockK.getMerchantAverage(merchantId)
+        assertDoesNotThrow {
+            sut.getAverage(merchantId)
         }
     }
 }

@@ -1,1 +1,1 @@
-aws --endpoint-url="http://localhost:4566" dynamodb scan --table-name Rate
+aws --endpoint-url="http://localhost:4566" dynamodb scan --table-name Average

@@ -1,5 +1,6 @@
 package com.example.demo.database.config
 
+import com.example.demo.database.model.AverageEntity
 import com.example.demo.database.model.RateEntity
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -27,7 +28,13 @@ class DynamoDBConfig {
 
     @Bean
     fun rateDynamoDbAsyncTable(enhancedAsyncClient: DynamoDbEnhancedAsyncClient) = enhancedAsyncClient.table(
-        "Rate",
+        RateEntity.getTableName(),
         TableSchema.fromBean(RateEntity::class.java)
+    )
+
+    @Bean
+    fun averageDynamoDbAsyncTable(enhancedAsyncClient: DynamoDbEnhancedAsyncClient) = enhancedAsyncClient.table(
+        AverageEntity.getTableName(),
+        TableSchema.fromBean(AverageEntity::class.java)
     )
 }

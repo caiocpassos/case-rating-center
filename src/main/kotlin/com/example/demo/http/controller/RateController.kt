@@ -1,7 +1,6 @@
 package com.example.demo.http.controller
 
 import com.example.demo.domain.usecase.AddRateUseCase
-import com.example.demo.domain.usecase.GetAllRatesUseCase
 import com.example.demo.domain.usecase.GetMerchantAverageUseCase
 import com.example.demo.domain.usecase.GetRatesByMerchantIdUseCase
 import com.example.demo.http.converter.RateDtoToRateConverter
@@ -18,7 +17,6 @@ import javax.validation.Valid
 @RequestMapping("/rates")
 class RateController(
     private val addRateUseCase: AddRateUseCase,
-    private val getAllRatesUseCase: GetAllRatesUseCase,
     private val getMerchantAverageUseCase: GetMerchantAverageUseCase,
     private val getRatesByMerchantIdUseCase: GetRatesByMerchantIdUseCase,
     private val rateDtoToRateConverter: RateDtoToRateConverter
@@ -28,14 +26,11 @@ class RateController(
     fun addRate(@Valid @RequestBody rating: RateDto) =
         addRateUseCase.add(rateDtoToRateConverter.convert(rating))
 
-    @GetMapping
-    fun getAllRates() = getAllRatesUseCase.getAll()
-
-    @GetMapping("/{merchantId}")
-    fun getRatesByMerchantIdUseCase(@PathVariable merchantId: String) = getRatesByMerchantIdUseCase.getBy(merchantId)
+    @GetMapping("/{clientId}")
+    fun getRatesByClientIdUseCase(@PathVariable clientId: String) =
+        getRatesByMerchantIdUseCase.getBy(clientId)
 
     @GetMapping("/media/{merchantId}")
-    fun getMerchantAverage(@PathVariable merchantId: String) {
+    fun getMerchantAverage(@PathVariable merchantId: String) =
         getMerchantAverageUseCase.getAverage(merchantId)
-    }
 }
