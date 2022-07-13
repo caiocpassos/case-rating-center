@@ -2,10 +2,10 @@
 
 ## O que é?
 
- - Esse é apenas um criado com o objetivo de praticar boas práticas da programação.
+ - Esse é apenas um case criado com o objetivo de praticar boas práticas da programação.
 
 
- - Ele consiste em uma aplicação backend cujo objetivo é dar notas à pedidos existentes feitos em algum restaurante por algum cliente. Essas notas precisam ser armazenadas em um banco de dados para que sejam retornadas depois.
+ - Ele consiste em uma aplicação backend cujo objetivo é dar notas a pedidos existentes feitos em algum restaurante por algum cliente. Essas notas precisam ser armazenadas em um banco de dados para que sejam retornadas depois.
 
 
  - Também será possível armazenar a média de um restaurante, que será baseada nas notas de todos os pedidos já feitos nele. Essa média também poderá ser retornada.
