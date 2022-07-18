@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service
 @Service
 class AddRateUseCase(private val rateRepository: RateRepository) {
 
-    fun add(rate: Rate) = rateRepository.addRate(rate)
+    suspend fun add(rate: Rate) = rateRepository.addRate(rate)
 
 
 }

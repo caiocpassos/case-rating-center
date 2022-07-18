@@ -2,9 +2,11 @@ package com.example.demo.database.repository
 
 import com.example.demo.database.model.AverageEntity
 import com.example.demo.domain.adapter.AverageRepository
+import com.example.demo.domain.entity.Average
 import com.example.demo.domain.entity.Rate
 import kotlinx.coroutines.future.await
 import kotlinx.coroutines.reactive.awaitLast
+import org.springframework.core.convert.ConversionService
 import org.springframework.stereotype.Repository
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbAsyncTable
 import software.amazon.awssdk.enhanced.dynamodb.Key
@@ -14,6 +16,7 @@ import java.time.Instant
 @Repository
 class DynamoDBAverageOperations(
     private val averageDbRateTable: DynamoDbAsyncTable<AverageEntity>,
+    private val conversionService: ConversionService
 ) : AverageRepository {
 
     override suspend fun saveAverage(partitionKey: String, newRate: Rate) {
@@ -33,15 +36,15 @@ class DynamoDBAverageOperations(
             rateQuantity = retrievedAverage.rateQuantity + 1,
             average = averageCalc
         )
-        averageDbRateTable.apply {
-            updateItem(updatedAverage).apply {
-                await()
-            }
-        }
+        averageDbRateTable.updateItem(updatedAverage).await()
     }
 
-    override suspend fun getMerchantAverage(partitionKey: String) {
-        TODO("Not yet implemented")
+    override suspend fun getMerchantAverage(partitionKey: String): Average {
+        val retrievedAverage = findAverage(partitionKey)
+
+        return conversionService.convert(
+            retrievedAverage, Average::class.java
+        )!!
     }
 
     override suspend fun findAverage(partitionKey: String): List<AverageEntity> {

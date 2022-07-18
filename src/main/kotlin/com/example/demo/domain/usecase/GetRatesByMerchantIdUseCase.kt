@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service
 @Service
 class GetRatesByMerchantIdUseCase(private val rateRepository: RateRepository) {
 
-    fun getBy(merchantId: String) = runBlocking {
+    suspend fun getBy(merchantId: String) {
         rateRepository.getRatesByMerchantId(merchantId)
     }
 

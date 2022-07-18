@@ -5,9 +5,9 @@ import com.example.demo.domain.entity.Average
 
 interface RateRepository {
 
-    fun addRate(rate: Rate)
+    suspend fun addRate(rate: Rate)
 
-    fun getRatesByMerchantId(merchantId: String): MutableList<Rate>
+    suspend fun getRatesByMerchantId(merchantId: String): MutableList<Rate>
 
     suspend fun getMerchantAverage(merchantId: String): Average
 

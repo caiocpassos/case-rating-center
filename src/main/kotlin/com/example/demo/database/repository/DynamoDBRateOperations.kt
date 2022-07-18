@@ -22,7 +22,7 @@ class DynamoDBRateOperations(
     private val conversionService: ConversionService
 ) : RateRepository {
 
-    override fun addRate(rate: Rate): Unit = runBlocking {
+    override suspend fun addRate(rate: Rate): Unit {
         val rateEntity = conversionService.convert(
             rate, RateEntity::class.java
         )
@@ -32,10 +32,10 @@ class DynamoDBRateOperations(
         averageRepository.saveAverage(averagePartitionKey, rate)
     }
 
-    override fun getRatesByMerchantId(merchantId: String): MutableList<Rate> = runBlocking {
+    override suspend fun getRatesByMerchantId(merchantId: String): MutableList<Rate> {
         val key = Key.builder().partitionValue(merchantId).build()
 
-        return@runBlocking dynamoDbRateTable
+        return dynamoDbRateTable
             .query(QueryConditional.keyEqualTo(key))
             .awaitLast()
             .items()
@@ -43,10 +43,6 @@ class DynamoDBRateOperations(
     }
 
     override suspend fun getMerchantAverage(merchantId: String): Average {
-        val retrievedAverage = averageRepository.findAverage(merchantId)
-
-        return conversionService.convert(
-            retrievedAverage, Average::class.java
-        )!!
+        return averageRepository.getMerchantAverage(merchantId)
     }
 }

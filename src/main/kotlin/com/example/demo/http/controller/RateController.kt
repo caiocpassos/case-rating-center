@@ -23,14 +23,14 @@ class RateController(
 ) {
 
     @PostMapping
-    fun addRate(@Valid @RequestBody rating: RateDto) =
+    suspend fun addRate(@Valid @RequestBody rating: RateDto) =
         addRateUseCase.add(rateDtoToRateConverter.convert(rating))
 
     @GetMapping("/{clientId}")
-    fun getRatesByClientIdUseCase(@PathVariable clientId: String) =
+    suspend fun getRatesByClientIdUseCase(@PathVariable clientId: String) =
         getRatesByMerchantIdUseCase.getBy(clientId)
 
     @GetMapping("/media/{merchantId}")
-    fun getMerchantAverage(@PathVariable merchantId: String) =
+    suspend fun getMerchantAverage(@PathVariable merchantId: String) =
         getMerchantAverageUseCase.getAverage(merchantId)
 }
